@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/esm/Container";
 
-const TextForm = () => {
+const TextForm = ({ mode }) => {
   const [text, settext] = useState("Leave text here");
 
   let handleOnChange = (event) => {
@@ -48,6 +48,8 @@ const TextForm = () => {
           as="textarea"
           style={{
             height: "100px",
+            backgroundColor: mode === "light" ? "white" : "#495057",
+            color: mode === "light" ? "black" : "white",
           }}
           value={text}
           onChange={handleOnChange}
@@ -87,8 +89,10 @@ const TextForm = () => {
       </Container>
 
       <Container>
-        <h1>Your Text Summary</h1>
-        <p>
+        <h1 style={{ color: mode === "light" ? "black" : "white" }}>
+          Your Text Summary
+        </h1>
+        <p style={{ color: mode === "light" ? "black" : "white" }}>
           {text.split(" ").length} words and {text.length} charecters
         </p>
       </Container>
