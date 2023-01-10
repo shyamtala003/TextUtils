@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/esm/Container";
 
-const TextForm = ({ mode }) => {
+const TextForm = ({ mode, setAlertData }) => {
   const [text, settext] = useState("Leave text here");
 
   let handleOnChange = (event) => {
@@ -13,11 +13,13 @@ const TextForm = ({ mode }) => {
   let handleToupper = () => {
     let newText = text.toUpperCase();
     settext(newText);
+    setAlertData("text converted to uppercase", "success");
   };
 
   let handleTolower = () => {
     let newText = text.toLowerCase();
     settext(newText);
+    setAlertData("text converted to lowercase", "success");
   };
 
   let handleToCapitalize = () => {
@@ -27,6 +29,7 @@ const TextForm = ({ mode }) => {
       return str.charAt(0).toUpperCase() + str.slice(1);
     });
     settext(newText.join(" "));
+    setAlertData("text converted to capitalize", "success");
   };
 
   let handleToRemoveSpaces = () => {
@@ -39,6 +42,7 @@ const TextForm = ({ mode }) => {
       }
     });
     settext(newText.join(" "));
+    setAlertData("all unnecessary white space has been removed", "success");
   };
 
   return (
