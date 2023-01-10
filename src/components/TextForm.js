@@ -21,7 +21,8 @@ const TextForm = () => {
   };
 
   let handleToCapitalize = () => {
-    let newText = text.split(" ");
+    let newText = text.toLowerCase();
+    newText = newText.split(" ");
     newText = newText.map((str) => {
       return str.charAt(0).toUpperCase() + str.slice(1);
     });
