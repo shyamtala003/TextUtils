@@ -19,7 +19,7 @@ function NavBar({ title, mode, toggleTheme }) {
             style={mode === "light" ? { color: "black" } : { color: "white" }}
             type="switch"
             id="custom-switch"
-            label="Check this switch"
+            label="Enable dark mode"
             onClick={toggleTheme}
           />
         </Navbar.Collapse>
