@@ -2,18 +2,25 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Form from "react-bootstrap/Form";
+import { LinkContainer } from "react-router-bootstrap";
 import PropTypes from "prop-types";
 
 function NavBar({ title, mode, toggleTheme }) {
   return (
     <Navbar bg={mode} variant={mode} expand="lg">
       <Container>
-        <Navbar.Brand href="#home">{title}</Navbar.Brand>
+        <LinkContainer to="/">
+          <Navbar.Brand>{title}</Navbar.Brand>
+        </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">About Us</Nav.Link>
+            <LinkContainer to="/">
+              <Nav.Link>Home</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/about">
+              <Nav.Link>About Us</Nav.Link>
+            </LinkContainer>
           </Nav>
           <Form.Check
             style={mode === "light" ? { color: "black" } : { color: "white" }}
