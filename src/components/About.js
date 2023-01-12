@@ -5,7 +5,8 @@ import Container from "react-bootstrap/esm/Container";
 const About = ({ mode }) => {
   return (
     <Container className="my-4">
-      <Accordion defaultActiveKey={["0"]} alwaysOpen>
+      <Accordion>
+        {/* defaultActiveKey={["0"]} alwaysOpen */}
         <Accordion.Item
           eventKey="0"
           style={{

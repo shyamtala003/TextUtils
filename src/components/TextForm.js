@@ -54,6 +54,10 @@ const TextForm = ({ mode, setAlertData }) => {
     settext(newText.join(" "));
     setAlertData("all unnecessary white space has been removed", "success");
   };
+  let handleCopyClipBoard = () => {
+    navigator.clipboard.writeText(text);
+    setAlertData("text copied", "success");
+  };
 
   return (
     <>
@@ -104,6 +108,15 @@ const TextForm = ({ mode, setAlertData }) => {
         >
           Remove Spaces
         </Button>
+        <Button
+          variant="dark"
+          className="m-2"
+          type="button"
+          onClick={handleCopyClipBoard}
+          disabled={disabledBtn}
+        >
+          Copy to Clipboard
+        </Button>
       </Container>
 
       <Container>
@@ -112,7 +125,7 @@ const TextForm = ({ mode, setAlertData }) => {
         </h1>
         <p style={{ color: mode === "light" ? "black" : "white" }}>
           {
-            text.split(" ").filter((el) => {
+            text.split(/\s+/).filter((el) => {
               return el.length !== 0;
             }).length
           }{" "}
