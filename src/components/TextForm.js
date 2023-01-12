@@ -2,13 +2,23 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/esm/Container";
+import { useEffect } from "react";
 
 const TextForm = ({ mode, setAlertData }) => {
   const [text, settext] = useState("Leave text here");
+  const [disabledBtn, setDisabledBtn] = useState(false);
 
   let handleOnChange = (event) => {
     settext(event.target.value);
   };
+
+  useEffect(() => {
+    if (text.length === 0) {
+      setDisabledBtn(true);
+    } else {
+      setDisabledBtn(false);
+    }
+  }, [text]);
 
   let handleToupper = () => {
     let newText = text.toUpperCase();
@@ -63,6 +73,7 @@ const TextForm = ({ mode, setAlertData }) => {
           className="m-2"
           type="button"
           onClick={handleToupper}
+          disabled={disabledBtn}
         >
           Uppercase{" "}
         </Button>{" "}
@@ -71,6 +82,7 @@ const TextForm = ({ mode, setAlertData }) => {
           className="m-2"
           type="button"
           onClick={handleTolower}
+          disabled={disabledBtn}
         >
           Lowercase{" "}
         </Button>{" "}
@@ -79,6 +91,7 @@ const TextForm = ({ mode, setAlertData }) => {
           className="m-2"
           type="button"
           onClick={handleToCapitalize}
+          disabled={disabledBtn}
         >
           Capitalize{" "}
         </Button>{" "}
@@ -87,6 +100,7 @@ const TextForm = ({ mode, setAlertData }) => {
           className="m-2"
           type="button"
           onClick={handleToRemoveSpaces}
+          disabled={disabledBtn}
         >
           Remove Spaces
         </Button>
@@ -97,7 +111,12 @@ const TextForm = ({ mode, setAlertData }) => {
           Your Text Summary
         </h1>
         <p style={{ color: mode === "light" ? "black" : "white" }}>
-          {text.split(" ").length} words and {text.length} charecters
+          {
+            text.split(" ").filter((el) => {
+              return el.length !== 0;
+            }).length
+          }{" "}
+          words and {text.length} charecters
         </p>
       </Container>
     </>
